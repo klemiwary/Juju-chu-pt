@@ -1,0 +1,36 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[fix.tools.prettier]
+command = ["pnpm", "exec", "prettier", "--stdin-filepath", "$path"]
+patterns = ["glob:'**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx,html,css,json,jsonc}'"]
+
+
+[aliases]
+lint = ["util", "exec", "--", "sh", "-c", """
+set -e
+
+files=$(jj diff -r 'reachable(@, mutable())' --name-only)
+js_files=$(echo "$files" | grep -E '\\.(js|mjs|cjs|ts|mts|cts|jsx|tsx)$' || true)
+
+[ -z "$js_files" ] && exit 0
+
+status=0
+jj new
+echo "$js_files" | xargs -r pnpm exec eslint --fix || status=$?
+jj absorb
+
+if [ "$(jj log -r '@ & empty()' --count)" = "1" ]; then
+  jj edit @-
+else
+  jj desc -m 'style: apply eslint autofixes'
+fi
+
+exit "$status"
+"""]
+
+push = [
+  "util", "exec", "--",
+  "bash", "-c",
+  "jj fix && jj lint && mise run pre-push && jj git push \"$@\"",
+  ""
+]
