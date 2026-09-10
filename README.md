@@ -29,12 +29,13 @@ Uma amostra gratuita está disponível para leitura. Dê uma olhada Leia um trec
 
 ### Leanpub
 
-- [Versão PDF/EPUB](https://leanpub.com/juju-chu) (a partir de US$ 12)
+- [Versão PDF/EPUB](https://leanpub.com/juju-chu-pt) (a partir de US$ 12)
 
 ### Amazon
 
-- [Versão Kindle](https://www.amazon.com/dp/B0H82MZBJH) (US$ 12)
-- [Capa comum](https://www.amazon.com/dp/B0H82KN1BH) (US$ 18,50)
+- [Versão Kindle](https://www.amazon.com.br/dp/B0HJCYRHWP) (R$ 49)
+<!--
+- [Capa comum](https://www.amazon.com/dp/B0H82KN1BH) (US$ 18,50) -->
 
 <br>
 
